@@ -80,5 +80,5 @@ function wrapText(open, close, posAfterStart = false) {
 	textarea.focus();
 	textarea.selectionEnd = posAfterStart
 		? start + posAfterStart
-		: end + wrappedText.length;
+        : start + wrappedText.length;
 }
