@@ -18,6 +18,9 @@ if (textarea !== null) {
     initToolbar();
 }
 
+/**
+ * Creates the toolbar and buttons, inserts it before the textarea, and sets up the event listeners
+ */
 function initToolbar() {
     const toolbar = document.createElement('div');
     toolbar.classList.add('toolbar');
@@ -56,6 +59,12 @@ function initToolbar() {
     textarea.parentElement.prepend(toolbar);
 }
 
+/**
+ * Generates a button element with consistent styling and type for use in the toolbar. Like Build-a-Bear, but without the capitalism.
+ *
+ * @param {string} label The visible label for the button
+ * @returns {element}
+ */
 function buildaButton(label) {
     const button = document.createElement('button');
     button.innerText = label;
@@ -65,6 +74,11 @@ function buildaButton(label) {
     return button;
 }
 
+/**
+ * Insert a string of text into the editor in the cursor's position
+ *
+ * @param {string} text
+ */
 function insertText(text) {
     const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
     textarea.setRangeText(text, start, start, 'end');
@@ -72,6 +86,13 @@ function insertText(text) {
     textarea.selectionEnd = end + text.length;
 }
 
+/**
+ * Wrap selected text with text and optionally set final cursor position
+ *
+ * @param {string} open The opening text to wrap, e.g. <b>
+ * @param {string} close The closing text to wrap, e.g. </b>
+ * @param {int} posAfterStart Number of characters after the start of the selection to place the cursor following the wrapping. Defaults to false, in which case the cursor is placed at the end of the wrapped text.
+ */
 function wrapText(open, close, posAfterStart = false) {
     const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
     const selectedText = textarea.value.substring(start, end);
