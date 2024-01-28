@@ -13,72 +13,72 @@
 
 /* Known issue: You can't undo these. The common solution is to use execCommand which is now deprecated. So for now, I'm going to just not worry about this and see if anyone screams. */
 
-const textarea = document.getElementById("edit_textarea");
+const textarea = document.getElementById('edit_textarea');
 if (textarea !== null) {
-	initToolbar();
+    initToolbar();
 }
 
 function initToolbar() {
-	const toolbar = document.createElement("div");
-	toolbar.classList.add("toolbar");
-	toolbar.style.marginBlockEnd = ".5em";
-	toolbar.style.display = "flex";
-	toolbar.style.gap = ".5em";
+    const toolbar = document.createElement('div');
+    toolbar.classList.add('toolbar');
+    toolbar.style.marginBlockEnd = '.5em';
+    toolbar.style.display = 'flex';
+    toolbar.style.gap = '.5em';
 
-	const dateButton = buildaButton("[date]");
-	const hrButton = buildaButton("<hr>");
-	const boldButton = buildaButton("Bold");
-	const italicButton = buildaButton("Italic");
-	const linkButton = buildaButton("Link");
+    const dateButton = buildaButton('[date]');
+    const hrButton = buildaButton('<hr>');
+    const boldButton = buildaButton('Bold');
+    const italicButton = buildaButton('Italic');
+    const linkButton = buildaButton('Link');
 
-	toolbar.appendChild(dateButton);
-	toolbar.appendChild(hrButton);
-	toolbar.appendChild(boldButton);
-	toolbar.appendChild(italicButton);
-	toolbar.appendChild(linkButton);
+    toolbar.appendChild(dateButton);
+    toolbar.appendChild(hrButton);
+    toolbar.appendChild(boldButton);
+    toolbar.appendChild(italicButton);
+    toolbar.appendChild(linkButton);
 
-	dateButton.addEventListener("click", () => {
-		insertText("[date] ");
-	});
-	hrButton.addEventListener("click", () => {
-		insertText("<hr>\n");
-	});
-	boldButton.addEventListener("click", () => {
-		wrapText("<b>", "</b>");
-	});
-	italicButton.addEventListener("click", () => {
-		wrapText("<i>", "</i>");
-	});
-	linkButton.addEventListener("click", () => {
-		wrapText("[|", "]", 1);
-	});
+    dateButton.addEventListener('click', () => {
+        insertText('[date] ');
+    });
+    hrButton.addEventListener('click', () => {
+        insertText('<hr>\n');
+    });
+    boldButton.addEventListener('click', () => {
+        wrapText('<b>', '</b>');
+    });
+    italicButton.addEventListener('click', () => {
+        wrapText('<i>', '</i>');
+    });
+    linkButton.addEventListener('click', () => {
+        wrapText('[|', ']', 1);
+    });
 
-	textarea.parentElement.prepend(toolbar);
+    textarea.parentElement.prepend(toolbar);
 }
 
 function buildaButton(label) {
-	const button = document.createElement("button");
-	button.innerText = label;
-	button.type = "button";
-	button.style.fontFamily = "monospace";
+    const button = document.createElement('button');
+    button.innerText = label;
+    button.type = 'button';
+    button.style.fontFamily = 'monospace';
 
-	return button;
+    return button;
 }
 
 function insertText(text) {
-	const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
-	textarea.setRangeText(text, start, start, "end");
-	textarea.focus();
-	textarea.selectionEnd = end + text.length;
+    const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
+    textarea.setRangeText(text, start, start, 'end');
+    textarea.focus();
+    textarea.selectionEnd = end + text.length;
 }
 
 function wrapText(open, close, posAfterStart = false) {
-	const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
-	const selectedText = textarea.value.substring(start, end);
-	const wrappedText = open + selectedText + close;
-	textarea.setRangeText(wrappedText, start, end, "end");
-	textarea.focus();
-	textarea.selectionEnd = posAfterStart
-		? start + posAfterStart
+    const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
+    const selectedText = textarea.value.substring(start, end);
+    const wrappedText = open + selectedText + close;
+    textarea.setRangeText(wrappedText, start, end, 'end');
+    textarea.focus();
+    textarea.selectionEnd = posAfterStart
+        ? start + posAfterStart
         : start + wrappedText.length;
 }
