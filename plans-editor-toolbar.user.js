@@ -67,7 +67,6 @@ function buildaButton(label) {
 
 function insertText(text) {
 	const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
-	console.log( start, end );
 	textarea.setRangeText(text, start, start, "end");
 	textarea.focus();
 	textarea.selectionEnd = end + text.length;
@@ -75,8 +74,8 @@ function insertText(text) {
 
 function wrapText(open, close, posAfterStart = false) {
 	const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
-	selectedText = textarea.value.substring(start, end);
-	wrappedText = open + selectedText + close;
+	const selectedText = textarea.value.substring(start, end);
+	const wrappedText = open + selectedText + close;
 	textarea.setRangeText(wrappedText, start, end, "end");
 	textarea.focus();
 	textarea.selectionEnd = posAfterStart
