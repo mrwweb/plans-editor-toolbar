@@ -28,7 +28,7 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 
 ### Step 2: Open the script file to install
 
-[Open the toolbar script.](https://github.com/mrwweb/plans-editor-toolbar/raw/master/plans-editor-toolbar.user.js) A box should show up asking you if you want to install the script. Do so. If the box doesn't show up, click on Tools->Greasemonkey->Install User Script... (you must first navigate to the script for this option to not be grayed out).
+[Open the toolbar script.](https://github.com/mrwweb/plans-editor-toolbar/raw/main/plans-editor-toolbar.user.js) A box should show up asking you if you want to install the script. Do so. If the box doesn't show up, click on Tools->Greasemonkey->Install User Script... (you must first navigate to the script for this option to not be grayed out).
 
 ## Known Issues and Limitations
 
