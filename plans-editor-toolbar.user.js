@@ -94,12 +94,29 @@ function insertText(text) {
  * @param {int} posAfterStart Number of characters after the start of the selection to place the cursor following the wrapping. Defaults to false, in which case the cursor is placed at the end of the wrapped text.
  */
 function wrapText(open, close, posAfterStart = false) {
+    // text selection and wrap it
     const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
     const selectedText = textarea.value.substring(start, end);
     const wrappedText = open + selectedText + close;
+
+    // update textarea and reset focus
     textarea.setRangeText(wrappedText, start, end, 'end');
     textarea.focus();
-    textarea.selectionEnd = posAfterStart
-        ? start + posAfterStart
-        : start + wrappedText.length;
+
+    // default cursor to end of selection
+    let cursorPos = start + wrappedText.length;
+    // If no selection, place cursor in between open and close
+    if (!hasSelection()) {
+        cursorPos = start + open.length;
+    }
+    // If there's an explicit position requested, that wins
+    if (posAfterStart !== false) {
+        cursorPos = start + posAfterStart;
+    }
+
+    textarea.selectionEnd = cursorPos;
+}
+
+function hasSelection() {
+    return textarea.selectionStart !== textarea.selectionEnd;
 }
