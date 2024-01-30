@@ -97,7 +97,12 @@ function wrapText(open, close, posAfterStart = false) {
     // text selection and wrap it
     const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
     const selectedText = textarea.value.substring(start, end);
-    const wrappedText = open + selectedText + close;
+    const leadingWhiteSpace = /^(\s*)/;
+    const trailingWhiteSpace = /(\s*)$/;
+    const matchLeading = selectedText.match(leadingWhiteSpace);
+    const matchTrailing = selectedText.match(trailingWhiteSpace);
+    const wrappedText =
+        matchLeading[0] + open + selectedText.trim() + close + matchTrailing[0];
 
     // update textarea and reset focus
     textarea.setRangeText(wrappedText, start, end, 'end');
