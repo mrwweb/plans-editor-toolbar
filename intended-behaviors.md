@@ -1,5 +1,7 @@
 # Intended Behaviors of the Editor
 
+aka `tests.HUMANS`
+
 Instead of writing tests or anything fancy for now, I'm just writing out the intended behaviors of the editor. This is probably sufficient for testing should I make any significant changes to the behavior.
 
 ## Bold and Italic
