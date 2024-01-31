@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     	PlansEditorToolbar
 // @description	Adds date, hr, bold, italic, and link buttons to the Plans editor for easier formatting (especially on mobile!)
-// @version  	1.1.0
+// @version  	1.2.0
 // @include		https://grinnellplans.com/edit.php
 // @downloadURL https://github.com/mrwweb/plans-editor-toolbar/raw/master/plans-editor-toolbar.user.js
 // @updateURL 	https://github.com/mrwweb/plans-editor-toolbar/raw/master/plans-editor-toolbar.user.js

@@ -1,5 +1,6 @@
 # Plans Editor Toolbar
-v1.1.0
+
+v1.2.0
 
 Plans might be a little easier to use—especialy for new users or those without physical keyboards—if there was a toolbar to quickly access common formatting options.
 
@@ -23,13 +24,13 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
 - [Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 - [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
-- [Safari](https://apps.apple.com/us/app/tampermonkey/id1482490089).
+- [Safari](https://apps.apple.com/us/app/tampermonkey/id1482490089)
 
 **Firefox with Greasemonkey**: If you are already using the [Greasemonkey browser extension](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/), this script will also work with that and you don't need to install Tampermonkey.
 
 ### Step 2: Open the script file to install
 
-[Open the toolbar script.](https://github.com/mrwweb/plans-editor-toolbar/raw/main/plans-editor-toolbar.user.js) A box should show up asking you if you want to install the script. Do so. If the box doesn't show up, click on Tools->Greasemonkey->Install User Script... (you must first navigate to the script for this option to not be grayed out).
+[Open the toolbar script.](https://github.com/mrwweb/plans-editor-toolbar/raw/main/plans-editor-toolbar.user.js) A box should show up asking you if you want to install the script.
 
 ## Known Issues and Limitations
 
@@ -38,6 +39,12 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 - Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems.
 
 ## Changelog
+
+### v1.2.0 (January 31, 2024)
+
+- Put leading and trailing whitespace in selections outside of wrapped text (bold, italic, links). (#7)
+- Place cursor inside bold/italic/link buttons if no text is selected (#6)
+- Detect whether selected text is a link and place selection accordingly when making a link (#1)
 
 ### v1.1.0 (January 28, 2024)
 
