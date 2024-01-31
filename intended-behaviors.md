@@ -20,4 +20,3 @@ Plans link syntax: `[{URL}|{text}]`
 
 - With no selection: Inserts the tag and places the cursor at the end of the tag.
 - With selection (not sure why you would do this): Place the tag at the start of the selection and leave the selection selected.
-- Note: The `[date]` tag is expected to include a trailing space. The `<hr>` tag is not.

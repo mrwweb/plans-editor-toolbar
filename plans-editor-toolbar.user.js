@@ -135,6 +135,6 @@ function insertLink() {
     if (selectedText.trim().startsWith('http')) {
         wrapText('[', '|]', -1);
     } else {
-        wrapText('[|', ']', 1);
+        wrapText('[|', ']', start === end ? 2 : 1);
     }
 }
