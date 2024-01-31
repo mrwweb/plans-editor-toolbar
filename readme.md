@@ -1,6 +1,6 @@
 # Plans Editor Toolbar
 
-v1.2.0
+v1.3.0
 
 Plans might be a little easier to use—especialy for new users or those without physical keyboards—if there was a toolbar to quickly access common formatting options.
 
@@ -39,6 +39,12 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 - Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems.
 
 ## Changelog
+
+### v1.3.0 (January 31, 2024)
+
+- Switch @includes to @match for better Tampermonkey support
+- Run on ALL plans pages, not just the editor
+- Select the first `textarea` on every page (#5)
 
 ### v1.2.0 (January 31, 2024)
 

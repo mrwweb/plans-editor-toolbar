@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name     	PlansEditorToolbar
 // @description	Adds date, hr, bold, italic, and link buttons to the Plans editor for easier formatting (especially on mobile!)
-// @version  	1.2.0
-// @include		https://grinnellplans.com/edit.php
+// @version  	1.3.0
+// @match		https://grinnellplans.com/*
 // @downloadURL https://github.com/mrwweb/plans-editor-toolbar/raw/master/plans-editor-toolbar.user.js
 // @updateURL 	https://github.com/mrwweb/plans-editor-toolbar/raw/master/plans-editor-toolbar.user.js
 // @supportURL	https://github.com/mrwweb/plans-editor-toolbar/issues/
@@ -13,8 +13,8 @@
 
 /* Known issue: You can't undo these. The common solution is to use execCommand which is now deprecated. So for now, I'm going to just not worry about this and see if anyone screams. */
 
-const textarea = document.getElementById('edit_textarea');
-if (textarea !== null) {
+const textarea = document.getElementsByTagName('textarea')[0];
+if (textarea !== undefined) {
     initToolbar();
 }
 
