@@ -41,7 +41,7 @@ function initToolbar() {
     toolbar.appendChild(linkButton);
 
     dateButton.addEventListener('click', () => {
-        insertText('[date] ');
+        insertText('[date]');
     });
     hrButton.addEventListener('click', () => {
         insertText('<hr>');
@@ -53,7 +53,7 @@ function initToolbar() {
         wrapText('<i>', '</i>');
     });
     linkButton.addEventListener('click', () => {
-        wrapText('[|', ']', 1);
+        insertLink();
     });
 
     textarea.parentElement.prepend(toolbar);
@@ -91,9 +91,9 @@ function insertText(text) {
  *
  * @param {string} open The opening text to wrap, e.g. <b>
  * @param {string} close The closing text to wrap, e.g. </b>
- * @param {int} posAfterStart Number of characters after the start of the selection to place the cursor following the wrapping. Defaults to false, in which case the cursor is placed at the end of the wrapped text.
+ * @param {int} cursorOffset Number of characters after the start of the selection to place the cursor following the wrapping. Defaults to false, in which case the cursor is placed at the end of the wrapped text. If cursorPos is negative, then the cursor position is set relative to the end of the selection.
  */
-function wrapText(open, close, posAfterStart = false) {
+function wrapText(open, close, cursorOffset = false) {
     // text selection and wrap it
     const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
     const selectedText = textarea.value.substring(start, end);
@@ -111,17 +111,30 @@ function wrapText(open, close, posAfterStart = false) {
     // default cursor to end of selection
     let cursorPos = start + wrappedText.length;
     // If no selection, place cursor in between open and close
-    if (!hasSelection()) {
+    if (start === end) {
         cursorPos = start + open.length;
     }
     // If there's an explicit position requested, that wins
-    if (posAfterStart !== false) {
-        cursorPos = start + posAfterStart;
+    if (cursorOffset && cursorOffset >= 0) {
+        cursorPos = start + cursorOffset;
+    } else if (cursorOffset < 0) {
+        cursorPos =
+            start + wrappedText.length - matchTrailing[0].length + cursorOffset; // offset is negative!
     }
 
     textarea.selectionEnd = cursorPos;
 }
 
-function hasSelection() {
-    return textarea.selectionStart !== textarea.selectionEnd;
+/**
+ * Insert the link syntax, detecting if selected text is the URL or link text
+ */
+function insertLink() {
+    const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
+    const selectedText = textarea.value.substring(start, end);
+
+    if (selectedText.trim().startsWith('http')) {
+        wrapText('[', '|]', -1);
+    } else {
+        wrapText('[|', ']', 1);
+    }
 }
