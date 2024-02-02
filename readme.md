@@ -50,7 +50,7 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 
 - Put leading and trailing whitespace in selections outside of wrapped text (bold, italic, links). (#7)
 - Place cursor inside bold/italic/link buttons if no text is selected (#6)
-- Detect whether selected text is a link and place selection accordingly when making a link (#1)
+- Detect whether selected text is a link and place selection accordingly when making a link (#1), props to [marcouke] for the nudge on this one
 
 ### v1.1.0 (January 28, 2024)
 
