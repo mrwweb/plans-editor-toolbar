@@ -71,18 +71,28 @@ function initToolbar() {
     hrButton.addEventListener('click', () => {
         insertText('<hr>');
     });
-    boldButton.addEventListener('click', () => {
-        wrapText('<b>', '</b>');
-    });
-    italicButton.addEventListener('click', () => {
-        wrapText('<i>', '</i>');
-    });
-    linkButton.addEventListener('click', () => {
-        insertLink();
-    });
+    boldButton.addEventListener('click', formatBold);
+    italicButton.addEventListener('click', formatItalic);
+    linkButton.addEventListener('click', insertLink);
 
     textarea.parentElement.prepend(styles);
     textarea.parentElement.prepend(toolbar);
+
+    textarea.addEventListener('keydown', (e) => {
+        if (e.ctrlKey) {
+            switch (e.key) {
+                case 'b':
+                    formatBold();
+                    break;
+                case 'i':
+                    formatItalic();
+                    break;
+                case 'k':
+                    insertLink();
+                    break;
+            }
+        }
+    });
 }
 
 /**
@@ -167,4 +177,12 @@ function insertLink() {
     } else {
         wrapText('[|', ']', start === end ? 2 : 1);
     }
+}
+
+function formatBold() {
+    wrapText('<b>', '</b>');
+}
+
+function formatItalic() {
+    wrapText('<i>', '</i>');
 }
