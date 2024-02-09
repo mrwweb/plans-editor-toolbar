@@ -71,18 +71,28 @@ function initToolbar() {
     hrButton.addEventListener('click', () => {
         insertText('<hr>');
     });
-    boldButton.addEventListener('click', () => {
-        wrapText('<b>', '</b>');
-    });
-    italicButton.addEventListener('click', () => {
-        wrapText('<i>', '</i>');
-    });
-    linkButton.addEventListener('click', () => {
-        insertLink();
-    });
+    boldButton.addEventListener('click', formatBold);
+    italicButton.addEventListener('click', formatItalic);
+    linkButton.addEventListener('click', insertLink);
 
     textarea.parentElement.prepend(styles);
     textarea.parentElement.prepend(toolbar);
+
+    textarea.addEventListener('keydown', (e) => {
+        if (e.ctrlKey) {
+            switch (e.key) {
+                case 'b':
+                    formatBold(e);
+                    break;
+                case 'i':
+                    formatItalic(e);
+                    break;
+                case 'k':
+                    insertLink(e);
+                    break;
+            }
+        }
+    });
 }
 
 /**
@@ -158,7 +168,8 @@ function wrapText(open, close, cursorOffset = false) {
 /**
  * Insert the link syntax, detecting if selected text is the URL or link text
  */
-function insertLink() {
+function insertLink(e) {
+    e.preventDefault();
     const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
     const selectedText = textarea.value.substring(start, end);
 
@@ -167,4 +178,14 @@ function insertLink() {
     } else {
         wrapText('[|', ']', start === end ? 2 : 1);
     }
+}
+
+function formatBold(e) {
+    e.preventDefault();
+    wrapText('<b>', '</b>');
+}
+
+function formatItalic(e) {
+    e.preventDefault();
+    wrapText('<i>', '</i>');
 }
