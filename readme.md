@@ -34,7 +34,6 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 
 ## Known Issues and Limitations
 
-- There's no support for keyboard shortcuts. I can  add this it this catches on.
 - It might be cool if the link button acted a little more like a builder/prompt to help people remember the format. Again, wouldn't be that hard to add if people want it.
 - Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems.
 
