@@ -1,8 +1,8 @@
 # Plans Editor Toolbar
 
-v1.4.0
+v1.4.0 ([Changelog](#changelog))
 
-Plans might be a little easier to use—especialy for new users or those without physical keyboards—if there was a toolbar to quickly access common formatting options.
+[GrinnellPlans](https://grinnellplans.com) can be a little easier to use—especialy for new users or those without physical keyboards—with a simple toolbar for formatting text.
 
 This script adds a toolbar with the following features:
 
@@ -10,16 +10,17 @@ This script adds a toolbar with the following features:
 - Insert the `<hr>` tag to make a horizontal rule
 - Wrap selected text in bold or italic
 - Insert the link syntax `[|]` - OR - wrap selected text inside a link, e.g. `[|{text selection}]`
+- Keyboard shortcuts for bold, italic, and insert link
 
 ## Installation
 
-This script can be installed as a UserScript just like [the _legendary_ NewLove script](https://github.com/grinnellplans/Newlove).
+The editor feature is installed as a custom UserScript, just like [NewLove](https://github.com/grinnellplans/Newlove) and [PlansPlus](https://github.com/niqjohnson/PlansPlus).
 
 ### Step 1: Install browser add-on
 
 All browsers can use the Tampermonkey browser extension, a cross-browser successor to Greasemonkey.
 
-**All other browsers**: Install the Tampermonkey browser extension in:
+**All Browsers**: Install the Tampermonkey browser extension in:
 
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
 - [Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
@@ -72,4 +73,10 @@ Mark Root-Wiley ([rootwile])
 
 ## Open Source
 
+- [GrinnellPlans Source on Github](https://github.com/grinnellplans/)
 - Editor icons from [Dashicons](https://github.com/WordPress/dashicons/)
+
+## Other Plans Stuff
+
+- [PlansPlus](https://github.com/niqjohnson/PlansPlus)
+- [NewLove](https://github.com/grinnellplans/Newlove)
