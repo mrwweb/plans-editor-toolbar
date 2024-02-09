@@ -64,3 +64,7 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 ## Credits
 
 Mark Root-Wiley ([rootwile])
+
+## Open Source
+
+- Editor icons from [Dashicons](https://github.com/WordPress/dashicons/)
