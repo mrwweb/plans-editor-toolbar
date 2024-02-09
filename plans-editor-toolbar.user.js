@@ -30,9 +30,10 @@ styles.innerHTML = `
     margin-block-end: 0.5em;
 }
 .plans-editor-toolbar button {
+    display: inline-flex;
     padding: .1875em;
     line-height: 1;
-    font-style: monospace;
+    font-family: monospace;
 }
 .plans-editor-toolbar svg {
     width: 18px;
