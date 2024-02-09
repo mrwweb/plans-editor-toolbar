@@ -1,6 +1,6 @@
 # Plans Editor Toolbar
 
-v1.3.0
+v1.4.0
 
 Plans might be a little easier to use—especialy for new users or those without physical keyboards—if there was a toolbar to quickly access common formatting options.
 
@@ -39,6 +39,12 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 - Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems.
 
 ## Changelog
+
+### v1.4.0 (February 8, 2024)
+
+- Use icons for buttons to make it slicker and more editor-like
+- New shortcuts! `CTRL` + `B`, `CTRL` + `I`, and `CTRL` + `K` for bold, italic, and link, respectively
+- Add GPV3 license now that I'm using Dashicons icons from the WordPress project
 
 ### v1.3.0 (January 31, 2024)
 
