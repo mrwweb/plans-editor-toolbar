@@ -1,6 +1,6 @@
 # Plans Editor Toolbar
 
-v1.4.0 ([Changelog](#changelog))
+v1.4.1 ([Changelog](#changelog))
 
 [GrinnellPlans](https://grinnellplans.com) can be a little easier to use—especialy for new users or those without physical keyboards—with a simple toolbar for formatting text.
 
@@ -39,6 +39,10 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 - Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems.
 
 ## Changelog
+
+### v1.4.1 (February 21, 2024)
+
+- Set SVG fill to `currentColor` to improve stylesheet compatibility
 
 ### v1.4.0 (February 8, 2024)
 
