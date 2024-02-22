@@ -39,8 +39,34 @@ styles.innerHTML = `
     width: 18px;
     height: 18px;
 }
+.plans-editor-button--close-editor {
+    display: none !important;
+}
+@media( max-width: 40em ) {
+    .plans-editor-focused {
+        textarea {
+            position: fixed;
+            inset: var(--toolbar-height) 0 0 0;
+            z-index: 999999;
+        }
+        .plans-editor-toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000000;
+            background: currentColor;
+            padding: .25em;
+        }
+        .plans-editor-button--close-editor {
+            display: block !important;
+            margin-inline-start: auto;
+        }
+    }
+}
 `;
 
+const submitButton = document.querySelector('button.submitinput');
 const textarea = document.getElementsByTagName('textarea')[0];
 if (textarea !== undefined) {
     initToolbar();
@@ -58,12 +84,14 @@ function initToolbar() {
     const boldButton = buildaButton('Bold', 'bold');
     const italicButton = buildaButton('Italic', 'italic');
     const linkButton = buildaButton('Link', 'link');
+    const closeButton = buildaButton('Close Editor', '');
 
     toolbar.appendChild(dateButton);
     toolbar.appendChild(hrButton);
     toolbar.appendChild(boldButton);
     toolbar.appendChild(italicButton);
     toolbar.appendChild(linkButton);
+    toolbar.appendChild(closeButton);
 
     dateButton.addEventListener('click', () => {
         insertText('[date]');
@@ -74,6 +102,13 @@ function initToolbar() {
     boldButton.addEventListener('click', formatBold);
     italicButton.addEventListener('click', formatItalic);
     linkButton.addEventListener('click', insertLink);
+    closeButton.addEventListener('click', () => {
+        document.body.classList.remove('plans-editor-focused');
+        submitButton.focus();
+    });
+    submitButton.addEventListener('focus', () => {
+        document.body.classList.remove('plans-editor-focused');
+    });
 
     textarea.parentElement.prepend(styles);
     textarea.parentElement.prepend(toolbar);
@@ -93,6 +128,14 @@ function initToolbar() {
             }
         }
     });
+
+    textarea.addEventListener('focus', () => {
+        document.body.classList.add('plans-editor-focused');
+        textarea.style.setProperty(
+            '--toolbar-height',
+            `${toolbar.offsetHeight}px`
+        );
+    });
 }
 
 /**
@@ -104,6 +147,9 @@ function initToolbar() {
 function buildaButton(label, icon = false) {
     const button = document.createElement('button');
     button.type = 'button';
+    button.classList.add(
+        `plans-editor-button--${label.toLowerCase().replace(' ', '-')}`
+    );
     if (icon) {
         button.setAttribute('aria-label', label);
         button.innerHTML = icons[icon];
