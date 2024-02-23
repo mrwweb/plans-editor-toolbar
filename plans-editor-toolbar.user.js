@@ -74,7 +74,6 @@ styles.innerHTML = `
         #editbox .submitinput {
             position: absolute;
             left: 50%;
-            inset-block-end: .25rem;
             transform: translateX(-50%);
             z-index: 1000000;
         }
