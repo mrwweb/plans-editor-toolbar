@@ -1,6 +1,6 @@
 # Plans Editor Toolbar
 
-v1.4.1 ([Changelog](#changelog))
+v1.5.0 ([Changelog](#changelog))
 
 [GrinnellPlans](https://grinnellplans.com) can be a little easier to use—especialy for new users or those without physical keyboards—with a simple toolbar for formatting text.
 
@@ -39,6 +39,11 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 - Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems.
 
 ## Changelog
+
+### v1.5.0-beta (February 22, 2024)
+
+- Editor now switches to full screen mode when editing on phones
+- "Change Plan" aka save button gets a fun disk icon
 
 ### v1.4.1 (February 21, 2024)
 
@@ -79,6 +84,7 @@ Mark Root-Wiley ([rootwile])
 
 - [GrinnellPlans Source on Github](https://github.com/grinnellplans/)
 - Editor icons from [Dashicons](https://github.com/WordPress/dashicons/)
+- [Save icon](https://thenounproject.com/icon/save-1050704/) from Noun Project (purchased with license)
 
 ## Other Plans Stuff
 

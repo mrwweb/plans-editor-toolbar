@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     	PlansEditorToolbar
 // @description	Adds date, hr, bold, italic, and link buttons to the Plans editor for easier formatting (especially on mobile!)
-// @version  	1.4.1
+// @version  	1.5.0-beta
 // @match		https://grinnellplans.com/*
 // @downloadURL https://github.com/mrwweb/plans-editor-toolbar/raw/master/plans-editor-toolbar.user.js
 // @updateURL 	https://github.com/mrwweb/plans-editor-toolbar/raw/master/plans-editor-toolbar.user.js
@@ -21,23 +21,29 @@ const icons = {
     code: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M12 2l4 4v12H4V2h8zM9 13l-2-2 2-2-1-1-3 3 3 3zm3 1l3-3-3-3-1 1 2 2-2 2z"/></svg>',
     hr: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M4 9h12v2H4V9z"/></svg>',
     date: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M15 4h3v14H2V4h3V3c0-.83.67-1.5 1.5-1.5S8 2.17 8 3v1h4V3c0-.83.67-1.5 1.5-1.5S15 2.17 15 3v1zM6 3v2.5c0 .28.22.5.5.5s.5-.22.5-.5V3c0-.28-.22-.5-.5-.5S6 2.72 6 3zm7 0v2.5c0 .28.22.5.5.5s.5-.22.5-.5V3c0-.28-.22-.5-.5-.5s-.5.22-.5.5zm4 14V8H3v9h14zM7 16V9H5v7h2zm4 0V9H9v7h2zm4 0V9h-2v7h2z"/></svg>',
+    close: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M15.75 6.75L18 3v14l-2.25-3.75L17 12h-4v4l1.25-1.25L18 17H2l3.75-2.25L7 16v-4H3l1.25 1.25L2 17V3l2.25 3.75L3 8h4V4L5.75 5.25 2 3h16l-3.75 2.25L13 4v4h4z"/></svg>',
+    save: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M14.5 2H3.7C2.7 2 2 2.7 2 3.7v12.6c0 1 .7 1.7 1.7 1.7h12.6c1 0 1.7-.7 1.7-1.7V6l-3.5-4zM10 15.6a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zm2.7-7.5H4.3V4.2h8.4v4z"/></svg>',
 };
 const styles = document.createElement('style');
 styles.innerHTML = `
 .plans-editor-toolbar {
     display: flex;
-    gap: 0.5em;
-    margin-block-end: 0.5em;
+    align-items: center;
+    gap: 0.5rem;
+    margin-block-end: 0.5rem;
 }
-.plans-editor-toolbar button {
+.plans-editor-toolbar button,
+.submitinput {
     display: inline-flex;
-    padding: .1875em;
+    align-items: center;
+    padding: .1875rem;
+    gap: .25em;
     line-height: 1;
-    font-family: monospace;
 }
-.plans-editor-toolbar svg {
-    width: 18px;
-    height: 18px;
+.plans-editor-toolbar svg,
+.submitinput svg {
+    width: 20px;
+    height: 20px;
 }
 .plans-editor-button--close-editor {
     display: none !important;
@@ -51,16 +57,24 @@ styles.innerHTML = `
         }
         .plans-editor-toolbar {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset-block-start: 0;
+            inset-inline-start: 0;
             width: 100%;
+            padding: .25rem;
             z-index: 1000000;
             background: currentColor;
-            padding: .25em;
         }
         .plans-editor-button--close-editor {
-            display: block !important;
+            display: inline-flex !important;
             margin-inline-start: auto;
+            margin-inline-end: 0.5rem;
+        }
+        .submitinput {
+            position: absolute;
+            left: 50%;
+            inset-block-end: .25rem;
+            transform: translateX(-50%);
+            z-index: 1000000;
         }
     }
 }
@@ -84,7 +98,7 @@ function initToolbar() {
     const boldButton = buildaButton('Bold', 'bold');
     const italicButton = buildaButton('Italic', 'italic');
     const linkButton = buildaButton('Link', 'link');
-    const closeButton = buildaButton('Close Editor', '');
+    const closeButton = buildaButton('Close Editor', 'close');
 
     toolbar.appendChild(dateButton);
     toolbar.appendChild(hrButton);
@@ -92,6 +106,8 @@ function initToolbar() {
     toolbar.appendChild(italicButton);
     toolbar.appendChild(linkButton);
     toolbar.appendChild(closeButton);
+
+    submitButton.innerHTML = icons.save + submitButton.innerHTML;
 
     dateButton.addEventListener('click', () => {
         insertText('[date]');
