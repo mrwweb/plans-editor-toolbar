@@ -40,10 +40,12 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 
 ## Changelog
 
-### v1.5.0-beta (February 22, 2024)
+### v1.5.0-beta3 (February 25, 2024)
 
-- Editor now switches to full screen mode when editing on phones
-- "Change Plan" aka save button gets a fun disk icon
+- New Editor fullscreen mode when editing on phones! (Added close button when editor is in fullscreen mode)
+- New button to insert planlove brackets (e.g., "[]")
+- Reordered toolbar buttons to put formatting buttons first
+- "Change Plan" button aka save button gets a fun disk icon
 
 ### v1.4.1 (February 21, 2024)
 
