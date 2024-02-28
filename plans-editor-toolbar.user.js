@@ -84,9 +84,11 @@ styles.innerHTML = `
 }
 `;
 
-const submitButton = document.querySelector('#editbox .submitinput');
-const textarea = document.getElementsByTagName('textarea')[0];
-if (textarea !== undefined) {
+const editForm = document.getElementById('editbox');
+const submitButton = editForm.querySelector('.submitinput');
+const textarea = editForm.querySelector('textarea');
+
+if (editForm !== null) {
     initToolbar();
 }
 
@@ -148,9 +150,11 @@ function initToolbar() {
                 case 'k':
                     insertLink(e);
                     break;
-                    break;
                 case 'l':
                     insertPlanLove(e);
+                    break;
+                case 's':
+                    editForm.requestSubmit(submitButton);
                     break;
             }
         }
