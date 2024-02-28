@@ -154,6 +154,7 @@ function initToolbar() {
                     insertPlanLove(e);
                     break;
                 case 's':
+                    e.preventDefault();
                     editForm.requestSubmit(submitButton);
                     break;
             }
