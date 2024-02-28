@@ -7,7 +7,7 @@
 		<style>
 			body {
 				max-width: 70ch;
-				width: 90vmax;
+				width: 90vw;
 				margin: 5vmax auto;
 				font-family: system-ui;
 				font-size: 1.1875rem;
@@ -22,6 +22,7 @@
 			}
 
             textarea {
+				max-width: 100%;
                 font: inherit;
             }
 
@@ -38,7 +39,7 @@
 	</head>
 	<body>
 		<h1>Test Plans Editor Toolbar</h1>
-		<form action>
+		<form id="editbox">
 			<textarea id="edit_textarea" cols="60" rows="15"
 				spellcheck="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt lectus mauris, ac elementum nibh rutrum in. Sed porttitor tellus vitae nisi pulvinar congue. Sed hendrerit a sapien in porta. Ut vitae enim et purus blandit lobortis et suscipit quam. Vestibulum cursus feugiat pharetra.
 
@@ -47,6 +48,8 @@ https://grinnellplans.com
 Integer a eros tellus. Vivamus pellentesque pellentesque viverra. Phasellus vitae eros elit. Praesent eu convallis turpis.
 
 Pellentesque ac odio mattis, vestibulum massa sed, viverra leo. Nullam sem mi, placerat ac nisl at, porttitor scelerisque tortor. Aenean ut luctus dolor. Mauris velit risus, blandit ac lacus sit amet, vehicula ullamcorper diam. Sed suscipit, ex a imperdiet suscipit, erat nisi fermentum est, non finibus lectus eros eu purus.</textarea>
+			<button type="submit" value="Change Plan" class="submitinput">Change
+				Plan</button>
 		</form>
 		<script src="plans-editor-toolbar.user.js"></script>
 	</body>

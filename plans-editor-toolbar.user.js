@@ -1,10 +1,8 @@
 // ==UserScript==
 // @name     	PlansEditorToolbar
-// @description	Adds date, hr, bold, italic, and link buttons to the Plans editor for easier formatting (especially on mobile!)
-// @version  	1.4.1
-// @match		https://grinnellplans.com/*
-// @downloadURL https://github.com/mrwweb/plans-editor-toolbar/raw/master/plans-editor-toolbar.user.js
-// @updateURL 	https://github.com/mrwweb/plans-editor-toolbar/raw/master/plans-editor-toolbar.user.js
+// @description	Bold, italic, date, hr, planlove, and link buttons and shortcuts for the Plans editor. Full-screen mode on mobile.
+// @version  	1.5.0
+// @match		https://grinnellplans.com/edit.php
 // @supportURL	https://github.com/mrwweb/plans-editor-toolbar/issues/
 // @source		https://github.com/mrwweb/plans-editor-toolbar/
 // @author		[rootwile] aka Mark Root-Wiley
@@ -21,28 +19,74 @@ const icons = {
     code: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M12 2l4 4v12H4V2h8zM9 13l-2-2 2-2-1-1-3 3 3 3zm3 1l3-3-3-3-1 1 2 2-2 2z"/></svg>',
     hr: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M4 9h12v2H4V9z"/></svg>',
     date: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M15 4h3v14H2V4h3V3c0-.83.67-1.5 1.5-1.5S8 2.17 8 3v1h4V3c0-.83.67-1.5 1.5-1.5S15 2.17 15 3v1zM6 3v2.5c0 .28.22.5.5.5s.5-.22.5-.5V3c0-.28-.22-.5-.5-.5S6 2.72 6 3zm7 0v2.5c0 .28.22.5.5.5s.5-.22.5-.5V3c0-.28-.22-.5-.5-.5s-.5.22-.5.5zm4 14V8H3v9h14zM7 16V9H5v7h2zm4 0V9H9v7h2zm4 0V9h-2v7h2z"/></svg>',
+    close: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M15.75 6.75L18 3v14l-2.25-3.75L17 12h-4v4l1.25-1.25L18 17H2l3.75-2.25L7 16v-4H3l1.25 1.25L2 17V3l2.25 3.75L3 8h4V4L5.75 5.25 2 3h16l-3.75 2.25L13 4v4h4z"/></svg>',
+    save: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M14.5 2H3.7C2.7 2 2 2.7 2 3.7v12.6c0 1 .7 1.7 1.7 1.7h12.6c1 0 1.7-.7 1.7-1.7V6l-3.5-4zM10 15.6a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zm2.7-7.5H4.3V4.2h8.4v4z"/></svg>',
+    planLove:
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M6 14H4V6h2V4H2v12h4M14 4v2h2v8h-2v2h4V4"/></svg>',
 };
 const styles = document.createElement('style');
 styles.innerHTML = `
 .plans-editor-toolbar {
     display: flex;
-    gap: 0.5em;
-    margin-block-end: 0.5em;
+    align-items: center;
+    gap: 0.5rem;
+    margin-block-end: 0.5rem;
 }
-.plans-editor-toolbar button {
+.plans-editor-toolbar button,
+#editbox .submitinput {
     display: inline-flex;
-    padding: .1875em;
+    align-items: center;
+    padding: .1875rem;
+    gap: .25em;
     line-height: 1;
-    font-family: monospace;
 }
-.plans-editor-toolbar svg {
-    width: 18px;
-    height: 18px;
+.plans-editor-toolbar svg,
+#editbox .submitinput svg {
+    width: 20px;
+    height: 20px;
+}
+.plans-editor-button--close-editor {
+    display: none !important;
+}
+@media( max-width: 40em ) {
+    .plans-editor-focused {
+        textarea {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            inset: var(--toolbar-height) 0 0 0;
+            z-index: 999999;
+        }
+        .plans-editor-toolbar {
+            position: fixed;
+            inset-block-start: 0;
+            inset-inline-start: 0;
+            width: 100%;
+            padding: .25rem;
+            z-index: 1000000;
+            background: currentColor;
+        }
+        .plans-editor-button--close-editor {
+            display: inline-flex !important;
+            margin-inline-start: auto;
+            margin-inline-end: 0.5rem;
+        }
+        #editbox .submitinput {
+            position: fixed;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+            z-index: 1000000;
+        }
+    }
 }
 `;
 
-const textarea = document.getElementsByTagName('textarea')[0];
-if (textarea !== undefined) {
+const editForm = document.getElementById('editbox');
+const submitButton = editForm.querySelector('.submitinput');
+const textarea = editForm.querySelector('textarea');
+
+if (editForm !== null) {
     initToolbar();
 }
 
@@ -53,17 +97,23 @@ function initToolbar() {
     const toolbar = document.createElement('div');
     toolbar.classList.add('plans-editor-toolbar');
 
-    const dateButton = buildaButton('[date]', 'date');
-    const hrButton = buildaButton('Horizontal Rule', 'hr');
     const boldButton = buildaButton('Bold', 'bold');
     const italicButton = buildaButton('Italic', 'italic');
     const linkButton = buildaButton('Link', 'link');
+    const loveButton = buildaButton('Plan Love', 'planLove');
+    const dateButton = buildaButton('[date]', 'date');
+    const hrButton = buildaButton('Horizontal Rule', 'hr');
+    const closeButton = buildaButton('Close Editor', 'close');
 
-    toolbar.appendChild(dateButton);
-    toolbar.appendChild(hrButton);
     toolbar.appendChild(boldButton);
     toolbar.appendChild(italicButton);
     toolbar.appendChild(linkButton);
+    toolbar.appendChild(loveButton);
+    toolbar.appendChild(dateButton);
+    toolbar.appendChild(hrButton);
+    toolbar.appendChild(closeButton);
+
+    submitButton.innerHTML = icons.save + submitButton.innerHTML;
 
     dateButton.addEventListener('click', () => {
         insertText('[date]');
@@ -74,6 +124,14 @@ function initToolbar() {
     boldButton.addEventListener('click', formatBold);
     italicButton.addEventListener('click', formatItalic);
     linkButton.addEventListener('click', insertLink);
+    loveButton.addEventListener('click', insertPlanLove);
+    closeButton.addEventListener('click', () => {
+        document.body.classList.remove('plans-editor-focused');
+        submitButton.focus();
+    });
+    submitButton.addEventListener('focus', () => {
+        document.body.classList.remove('plans-editor-focused');
+    });
 
     textarea.parentElement.prepend(styles);
     textarea.parentElement.prepend(toolbar);
@@ -90,8 +148,23 @@ function initToolbar() {
                 case 'k':
                     insertLink(e);
                     break;
+                case 'l':
+                    insertPlanLove(e);
+                    break;
+                case 's':
+                    e.preventDefault();
+                    editForm.requestSubmit(submitButton);
+                    break;
             }
         }
+    });
+
+    textarea.addEventListener('focus', () => {
+        document.body.classList.add('plans-editor-focused');
+        textarea.style.setProperty(
+            '--toolbar-height',
+            `${toolbar.offsetHeight}px`
+        );
     });
 }
 
@@ -104,6 +177,9 @@ function initToolbar() {
 function buildaButton(label, icon = false) {
     const button = document.createElement('button');
     button.type = 'button';
+    button.classList.add(
+        `plans-editor-button--${label.toLowerCase().replace(' ', '-')}`
+    );
     if (icon) {
         button.setAttribute('aria-label', label);
         button.innerHTML = icons[icon];
@@ -188,4 +264,9 @@ function formatBold(e) {
 function formatItalic(e) {
     e.preventDefault();
     wrapText('<i>', '</i>');
+}
+
+function insertPlanLove(e) {
+    e.preventDefault();
+    wrapText('[', ']');
 }
