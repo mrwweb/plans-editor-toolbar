@@ -4,13 +4,29 @@ v1.5.0 ([Changelog](#changelog))
 
 [GrinnellPlans](https://grinnellplans.com) can be a little easier to use—especialy for new users or those without physical keyboards—with a simple toolbar for formatting text.
 
+## Features
+
 This script adds a toolbar with the following features:
 
-- Insert the [date] shortcode
-- Insert the `<hr>` tag to make a horizontal rule
 - Wrap selected text in bold or italic
-- Insert the link syntax `[|]` - OR - wrap selected text inside a link, e.g. `[|{text selection}]`
-- Keyboard shortcuts for bold, italic, and insert link
+- Insert the link syntax `[|]` / wrap selected text inside a link, e.g. `[|{text selection}]`
+- Insert planlove brackets `[]` / wrap selected text inside planlove brackets, e.g. `[{text selection}]`
+- Insert the `[date]` shortcode
+- Insert the `<hr>` tag to make a horizontal rule
+- Keyboard shortcuts!
+- Full screen editor on mobile for _astoundingly_ better usability
+
+### Shorcuts
+
+All shortcuts only work when the editor is in focus. (Should we add shortcuts for `[date]` and `<hr>`?)
+
+| Shortcut      | Action                |
+|-------------- |---------------------- |
+| `Ctrl` + `b`  | Bold                  |
+| `Ctrl` + `i`  | Italic                |
+| `Ctrl` + `k`  | Make/Insert link      |
+| `Ctrl` + `l`  | Make/Insert planlove  |
+| `Ctrl` + `s`  | Save plan             |
 
 ## Installation
 
@@ -40,12 +56,14 @@ All browsers can use the Tampermonkey browser extension, a cross-browser success
 
 ## Changelog
 
-### v1.5.0-beta3 (February 25, 2024)
+### v1.5.0 (February 28, 2024)
 
 - New Editor fullscreen mode when editing on phones! (Added close button when editor is in fullscreen mode)
 - New button to insert planlove brackets (e.g., "[]")
+- `Ctrl` + `s` will now save your plan
 - Reordered toolbar buttons to put formatting buttons first
 - "Change Plan" button aka save button gets a fun disk icon
+- Roll back previous change that tried to target all editors. Only apply to the main Plan text editor for now (not notes, secrets)
 
 ### v1.4.1 (February 21, 2024)
 
