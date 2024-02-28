@@ -148,6 +148,10 @@ function initToolbar() {
                 case 'k':
                     insertLink(e);
                     break;
+                    break;
+                case 'l':
+                    insertPlanLove(e);
+                    break;
             }
         }
     });
