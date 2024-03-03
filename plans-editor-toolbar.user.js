@@ -137,6 +137,8 @@ function initToolbar() {
     textarea.parentElement.prepend(styles);
     textarea.parentElement.prepend(toolbar);
 
+    textarea.addEventListener('paste', pasteLink);
+
     textarea.addEventListener('keydown', (e) => {
         if (e.ctrlKey) {
             switch (e.key) {
@@ -171,7 +173,6 @@ function initToolbar() {
 
 /**
  * Generates a button element with consistent styling and type for use in the toolbar. Like Build-a-Bear, but without the capitalism.
- *
  * @param {string} label The visible label for the button
  * @returns {element}
  */
@@ -193,7 +194,6 @@ function buildaButton(label, icon = false) {
 
 /**
  * Insert a string of text into the editor in the cursor's position
- *
  * @param {string} text
  */
 function insertText(text) {
@@ -211,13 +211,17 @@ function insertText(text) {
  * @param {int} cursorOffset Number of characters after the start of the selection to place the cursor following the wrapping. Defaults to false, in which case the cursor is placed at the end of the wrapped text. If cursorPos is negative, then the cursor position is set relative to the end of the selection.
  */
 function wrapText(open, close, cursorOffset = false) {
-    // text selection and wrap it
+    // get selection
     const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
     const selectedText = textarea.value.substring(start, end);
+
+    // capture leading and trailing whitespace
     const leadingWhiteSpace = /^(\s*)/;
     const trailingWhiteSpace = /(\s*)$/;
     const matchLeading = selectedText.match(leadingWhiteSpace);
     const matchTrailing = selectedText.match(trailingWhiteSpace);
+
+    // wrap the selected text with whitespace outside the opening and closing "tag"
     const wrappedText =
         matchLeading[0] + open + selectedText.trim() + close + matchTrailing[0];
 
@@ -244,29 +248,59 @@ function wrapText(open, close, cursorOffset = false) {
 
 /**
  * Insert the link syntax, detecting if selected text is the URL or link text
+ * @param {object} e
  */
 function insertLink(e) {
     e.preventDefault();
     const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
     const selectedText = textarea.value.substring(start, end);
 
-    if (selectedText.trim().startsWith('http')) {
+    if (isValidURL(selectedText.trim())) {
         wrapText('[', '|]', -1);
     } else {
         wrapText('[|', ']', start === end ? 2 : 1);
     }
 }
 
+/**
+ * When pasting a URL and text is selected, form a link
+ * @param {object} e
+ */
+function pasteLink(e) {
+    // get clipboard text
+    const clipBoardText = e.clipboardData.getData('text').trim();
+
+    // get text selection
+    const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
+
+    if (isUrl(clipBoardText) && start !== end) {
+        e.preventDefault();
+        wrapText('[' + clipBoardText + '|', ']');
+    }
+}
+
+/**
+ * Wrap text with bold HTML tags
+ * @param {object} e
+ */
 function formatBold(e) {
     e.preventDefault();
     wrapText('<b>', '</b>');
 }
 
+/**
+ * Wrap text with italic HTML tags
+ * @param {object} e
+ */
 function formatItalic(e) {
     e.preventDefault();
     wrapText('<i>', '</i>');
 }
 
+/**
+ * Wrap text with square brackets
+ * @param {object} e
+ */
 function insertPlanLove(e) {
     e.preventDefault();
     wrapText('[', ']');
