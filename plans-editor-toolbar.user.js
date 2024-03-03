@@ -271,3 +271,12 @@ function insertPlanLove(e) {
     e.preventDefault();
     wrapText('[', ']');
 }
+
+/**
+ * Test if it's a URL. Not perfect, but it doesn't need to be
+ * @param {string} string
+ * @returns {boolean}
+ */
+function isUrl(string) {
+    return string.startsWith('http://') || string.startsWith('https://');
+}
