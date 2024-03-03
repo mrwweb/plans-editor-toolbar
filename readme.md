@@ -1,6 +1,6 @@
 # Plans Editor Toolbar
 
-v1.5.0 ([Changelog](#changelog))
+v1.6.0 ([Changelog](#changelog))
 
 [GrinnellPlans](https://grinnellplans.com) can be a little easier to use—especialy for new users or those without physical keyboards—with a simple toolbar for formatting text.
 
@@ -8,17 +8,26 @@ v1.5.0 ([Changelog](#changelog))
 
 This script adds a toolbar with the following features:
 
-- Wrap selected text in bold or italic
-- Insert the link syntax `[|]` / wrap selected text inside a link, e.g. `[|{text selection}]`
-- Insert planlove brackets `[]` / wrap selected text inside planlove brackets, e.g. `[{text selection}]`
-- Insert the `[date]` shortcode
-- Insert the `<hr>` tag to make a horizontal rule
-- Keyboard shortcuts!
-- Full screen editor on mobile for _astoundingly_ better usability
+- Formatting buttons for bold and italic
+- Button to make links that smartly detects selected text to help you
+- [Magic link pasting](#magic-link-pasting)
+- Button to insert planlove brackets `[]` or wrap selected text in brackets
+- Buttons to insert the `[date]` shortcode and `<hr>` tag
+- [Keyboard shortcuts for all features!](#shortcuts)
+- Full screen editor on mobile for _astoundingly_ better usability on your phone
 
-### Shorcuts
+### Magic link pasting
 
-All shortcuts only work when the editor is in focus. (Should we add shortcuts for `[date]` and `<hr>`?)
+Link pasting feels like magic if you've never used it before. To make a link with link pasting:
+
+1. Copy a URL to your clipboard
+2. Select the text that should be the link
+3. Paste (right-click > Paste or `Ctrl`/`Cmd` + `v`)
+4. Result `[{clipboard link}|{selected text}]`
+
+### Shortcuts
+
+When your cursor is in the plan editor, you can use the following shortcuts:
 
 | Shortcut      | Action                |
 |-------------- |---------------------- |
@@ -26,35 +35,44 @@ All shortcuts only work when the editor is in focus. (Should we add shortcuts fo
 | `Ctrl` + `i`  | Italic                |
 | `Ctrl` + `k`  | Make/Insert link      |
 | `Ctrl` + `l`  | Make/Insert planlove  |
+| `Ctrl` + `d`  | Insert `[date]`       |
+| `Ctrl` + `h`  | Insert `<hr>`         |
 | `Ctrl` + `s`  | Save plan             |
 
 ## Installation
 
 The editor feature is installed as a custom UserScript, just like [NewLove](https://github.com/grinnellplans/Newlove) and [PlansPlus](https://github.com/niqjohnson/PlansPlus).
 
-### Step 1: Install browser add-on
+### Step 1: Install a userscript browser add-on
 
-All browsers can use the Tampermonkey browser extension, a cross-browser successor to Greasemonkey.
+All browsers can use the Tampermonkey browser extension, a cross-browser successor to Greasemonkey. Firefox users can also use [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/).
 
-**All Browsers**: Install the Tampermonkey browser extension in:
+- [Firefox Tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
+- [Chrome Tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+- [Edge Tampermonkey](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
+- [Safari Tampermonkey](https://apps.apple.com/us/app/tampermonkey/id1482490089)
 
-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
-- [Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-- [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
-- [Safari](https://apps.apple.com/us/app/tampermonkey/id1482490089)
-
-**Firefox with Greasemonkey**: If you are already using the [Greasemonkey browser extension](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/), this script will also work with that and you don't need to install Tampermonkey.
-
-### Step 2: Open the script file to install
+### Step 2: Open the userscript file to install it
 
 [Open the toolbar script.](https://github.com/mrwweb/plans-editor-toolbar/raw/main/plans-editor-toolbar.user.js) A box should show up asking you if you want to install the script.
 
+## Upgrading
+
+Tampermonkey is known to stuggle with updates. You can always manually upgrade a script by [opening the toolbar script again](https://github.com/mrwweb/plans-editor-toolbar/raw/main/plans-editor-toolbar.user.js).
+
 ## Known Issues and Limitations
 
-- It might be cool if the link button acted a little more like a builder/prompt to help people remember the format. Again, wouldn't be that hard to add if people want it.
-- Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems.
+- It might be cool if the link button acted a little more like a builder/prompt to help people remember the format. Again, wouldn't be that hard to add if people want it. See: #2
+- Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems. See: #4
 
 ## Changelog
+
+### v1.6.0 (March 3, 2024)
+
+- [Magic link pasting!](#magic-link-pasting)
+- [Shortcuts](#shortcuts) for `[date]` and `<hr>`
+- Add new `@match` userscript rule so this works regardless of `www` in URL.
+- Refactor code into more reusable functions and remove some unnecessary checks and `preventDefault()`s. Encapsulate code in function to avoid interferance with other scripts.
 
 ### v1.5.0 (February 28, 2024)
 
@@ -104,9 +122,9 @@ Mark Root-Wiley ([rootwile])
 
 - [GrinnellPlans Source on Github](https://github.com/grinnellplans/)
 - Editor icons from [Dashicons](https://github.com/WordPress/dashicons/)
-- [Save icon](https://thenounproject.com/icon/save-1050704/) from Noun Project (purchased with license)
+- [Save icon](https://thenounproject.com/icon/save-1050704/) from Noun Project (downloaded from licensed account)
 
-## Other Plans Stuff
+## Other Plans Userscripts
 
 - [PlansPlus](https://github.com/niqjohnson/PlansPlus)
 - [NewLove](https://github.com/grinnellplans/Newlove)

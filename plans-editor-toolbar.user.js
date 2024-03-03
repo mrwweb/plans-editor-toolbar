@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     	PlansEditorToolbar
 // @description	Bold, italic, date, hr, planlove, and link buttons and shortcuts for the Plans editor. Full-screen mode on mobile.
-// @version  	1.5.0
+// @version  	1.6.0
 // @match		https://grinnellplans.com/edit.php
 // @match		https://www.grinnellplans.com/edit.php
 // @supportURL	https://github.com/mrwweb/plans-editor-toolbar/issues/
@@ -159,27 +159,20 @@ function PlansEditorToolbar() {
     }
 
     /**
-     * Generates a button element with consistent styling and type for use in the toolbar. Like Build-a-Bear, but without the capitalism.
+     * Generates a button element with icon and event handler for use in the toolbar
      * @param {string} label The visible label for the button
-     * @param {string} icon Icon key to use in the button (optional)
-     * @param {function} eventHandler Function to run on click (optional)
+     * @param {string} icon Icon key to use in the butto
+     * @param {function} eventHandler Function to run on click
      */
-    function createToolbarButton(label, icon = false, eventHandler = false) {
+    function createToolbarButton(label, icon, eventHandler) {
         const button = document.createElement('button');
         button.type = 'button';
         button.classList.add(
             `plans-editor-button--${label.toLowerCase().replace(' ', '-')}`
         );
-        if (icon) {
-            button.setAttribute('aria-label', label);
-            button.innerHTML = icons[icon];
-        } else {
-            button.innerHTML = label;
-        }
-
-        if (eventHandler) {
-            button.addEventListener('click', eventHandler);
-        }
+        button.setAttribute('aria-label', label);
+        button.innerHTML = icons[icon];
+        button.addEventListener('click', eventHandler);
 
         toolbar.appendChild(button);
     }
@@ -250,15 +243,23 @@ function PlansEditorToolbar() {
      * @param {object} e event object
      */
     function insertLink(e) {
-        e.preventDefault();
-        const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
-        const selectedText = textarea.value.substring(start, end);
+        const selectedText = getSelectedText();
 
         if (isUrl(selectedText.trim())) {
             wrapText('[', '|]', -1);
         } else {
-            wrapText('[|', ']', start === end ? 2 : 1);
+            wrapText('[|', ']', selectedText.length ? 1 : 2);
         }
+    }
+
+    /**
+     * Get selected text from the textarea
+     * @returns {string}
+     */
+    function getSelectedText() {
+        const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
+        const selectedText = textarea.value.substring(start, end);
+        return selectedText;
     }
 
     /**
@@ -266,13 +267,11 @@ function PlansEditorToolbar() {
      * @param {object} e event object
      */
     function pasteLink(e) {
-        // get clipboard text
+        // get clipboard text and textarea selection
         const clipBoardText = e.clipboardData.getData('text').trim();
+        const selectedText = getSelectedText();
 
-        // get text selection
-        const [start, end] = [textarea.selectionStart, textarea.selectionEnd];
-
-        if (isUrl(clipBoardText) && start !== end) {
+        if (isUrl(clipBoardText) && selectedText) {
             e.preventDefault();
             wrapText('[' + clipBoardText + '|', ']');
         }
@@ -283,7 +282,6 @@ function PlansEditorToolbar() {
      * @param {object} e event object
      */
     function formatBold(e) {
-        e.preventDefault();
         wrapText('<b>', '</b>');
     }
 
@@ -292,7 +290,6 @@ function PlansEditorToolbar() {
      * @param {object} e event object
      */
     function formatItalic(e) {
-        e.preventDefault();
         wrapText('<i>', '</i>');
     }
 
@@ -301,7 +298,6 @@ function PlansEditorToolbar() {
      * @param {object} e event object
      */
     function insertPlanLove(e) {
-        e.preventDefault();
         wrapText('[', ']');
     }
 
