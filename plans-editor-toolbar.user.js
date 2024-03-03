@@ -3,6 +3,7 @@
 // @description	Bold, italic, date, hr, planlove, and link buttons and shortcuts for the Plans editor. Full-screen mode on mobile.
 // @version  	1.5.0
 // @match		https://grinnellplans.com/edit.php
+// @match		https://www.grinnellplans.com/edit.php
 // @supportURL	https://github.com/mrwweb/plans-editor-toolbar/issues/
 // @source		https://github.com/mrwweb/plans-editor-toolbar/
 // @author		[rootwile] aka Mark Root-Wiley
