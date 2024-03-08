@@ -1,6 +1,6 @@
 # Plans Editor Toolbar
 
-v1.6.0 ([Changelog](#changelog))
+v1.6.1 ([Changelog](#changelog))
 
 [GrinnellPlans](https://grinnellplans.com) can be a little easier to use—especialy for new users or those without physical keyboards—with a simple toolbar for formatting text.
 
@@ -66,6 +66,10 @@ Tampermonkey is known to stuggle with updates. You can always manually upgrade a
 - Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems. See: #4
 
 ## Changelog
+
+### v1.6.1 (March 8, 2024)
+
+- Fix shortcuts so browser doesn't respond to them.
 
 ### v1.6.0 (March 3, 2024)
 

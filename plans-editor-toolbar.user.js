@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     	PlansEditorToolbar
 // @description	Bold, italic, date, hr, planlove, and link buttons and shortcuts for the Plans editor. Full-screen mode on mobile.
-// @version  	1.6.0
+// @version  	1.6.1
 // @match		https://grinnellplans.com/edit.php
 // @match		https://www.grinnellplans.com/edit.php
 // @supportURL	https://github.com/mrwweb/plans-editor-toolbar/issues/
@@ -116,21 +116,27 @@ function PlansEditorToolbar() {
             if (e.ctrlKey) {
                 switch (e.key) {
                     case 'b':
+                        e.preventDefault();
                         formatBold(e);
                         break;
                     case 'i':
+                        e.preventDefault();
                         formatItalic(e);
                         break;
                     case 'k':
+                        e.preventDefault();
                         insertLink(e);
                         break;
                     case 'l':
+                        e.preventDefault();
                         insertPlanLove(e);
                         break;
                     case 'd':
+                        e.preventDefault();
                         insertDate();
                         break;
                     case 'h':
+                        e.preventDefault();
                         insertHr();
                         break;
                     case 's':
