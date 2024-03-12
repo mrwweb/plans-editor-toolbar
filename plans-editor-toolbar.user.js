@@ -86,6 +86,8 @@ function PlansEditorToolbar() {
     const editForm = document.getElementById('editbox');
     const submitButton = editForm.querySelector('.submitinput');
     const textarea = editForm.querySelector('textarea');
+    const oldPlanText = textarea.value;
+
     const toolbar = document.createElement('div');
     toolbar.classList.add('plans-editor-toolbar');
 
@@ -110,6 +112,18 @@ function PlansEditorToolbar() {
 
         // intercept paste for "link pasting" on selections
         textarea.addEventListener('paste', pasteLink);
+
+        // Warn when closing window without saving if plan text has changed
+        textarea.addEventListener('input', (e) => {
+            if (oldPlanText !== e.currentTarget.value) {
+                window.addEventListener('beforeunload', areYouSure);
+            } else {
+                window.removeEventListener('beforeunload', areYouSure);
+            }
+        });
+        editForm.addEventListener('submit', () => {
+            window.removeEventListener('beforeunload', areYouSure);
+        });
 
         // add keyboard shortcuts, all with CTRL
         textarea.addEventListener('keydown', (e) => {
@@ -162,6 +176,16 @@ function PlansEditorToolbar() {
         // insert styles and toolbar into the DOM
         textarea.parentElement.prepend(styles);
         textarea.parentElement.prepend(toolbar);
+    }
+
+    /**
+     * Prevent default and return true
+     * @param {object} e the event
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event#examples
+     */
+    function areYouSure(e) {
+        e.preventDefault();
+        e.returnValue = true;
     }
 
     /**
