@@ -233,9 +233,6 @@ dialog {
                 `${toolbar.offsetHeight}px`
             );
         });
-        submitButton.addEventListener('focus', () => {
-            document.body.classList.remove('plans-editor-focused');
-        });
 
         // insert styles and toolbar into the DOM
         textarea.parentElement.prepend(styles);
