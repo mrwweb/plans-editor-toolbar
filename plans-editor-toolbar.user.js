@@ -60,10 +60,11 @@ html:has(dialog[open]) {
 }
 
 dialog {
-    width: 80vw;
-    height: 80vh;
-    padding: 40px;
+    box-sizing: border-box;
+    width: 90%;
+    padding: 5vw;
     max-width: 75ch;
+    color: inherit;
     border: 1px solid transparent;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
     
@@ -73,6 +74,7 @@ dialog {
     }
     th {
         text-align: left;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     }
     th,td {
         padding: .25em;
@@ -81,8 +83,8 @@ dialog {
         background: rgba(0, 0, 0, 0.05);
     }
     svg {
-        width: 1em;
-        height: 1em;
+        width: 1.25em;
+        height: 1.25em;
     }
 }
 
@@ -425,7 +427,7 @@ dialog {
     }
 
     function toggleHelp() {
-        dialogContent.innerHTML = `<h2>Plans Text Editor Toolbar Help</h2>
+        dialogContent.innerHTML = `<h2>Editor Toolbar Help</h2>
 <h3>Buttons</h3>
 <table>
 <thead><tr>
@@ -457,7 +459,8 @@ dialog {
 </tr>
 </tbody>
 </table>
-<p><em><small>* Button inserts formatting or wraps selected text.</small></em></p>
+<p><em>* Button inserts formatting or wraps selected text.</em></p>
+<hr>
 <h3>Shortcuts</h3>
 <table>
 <thead>
@@ -497,6 +500,7 @@ dialog {
 </tr>
 </tbody>
 </table>
+<hr>
 <h3>Magic Link Pasting!</h3>
 <ol>
 <li>Copy a URL</li>
