@@ -2,27 +2,27 @@
 
 v1.7.1 ([Changelog](#changelog))
 
-[GrinnellPlans](https://grinnellplans.com) can be a little easier to use—especialy for new users or those without physical keyboards—with a simple toolbar for formatting text.
+Make [GrinnellPlans](https://grinnellplans.com) a little easier to use with a simple toolbar for formatting text, especially on phones or if you don't like HTML.
+
+![The plans editor toolbar sitting above the top of my plan](https://github.com/mrwweb/plans-editor-toolbar/blob/main/editor-screenshot.png?raw=true)
 
 ## Features
 
 This script adds a toolbar with the following features:
 
-- Formatting buttons for bold and italic
-- Button to make links that smartly detects selected text to help you
-- [Magic link pasting](#magic-link-pasting)
-- Button to insert planlove brackets `[]` or wrap selected text in brackets
-- Buttons to insert the `[date]` shortcode and `<hr>` tag
-- [Keyboard shortcuts for all features!](#shortcuts)
+- Buttons! Bold, italic, link, planlove brackets, date, horizontal rule, and editor help
+    - Buttons work to insert formatting or apply to selected text (especially helpful for links!)
+- [Keyboard shortcuts](#shortcuts) for every button function + `CTRL`/`CMD` + `s` to save your plan
+- 🪄 [Magic link pasting](#magic-link-pasting) 🪄
 - Full screen editor on mobile for _astoundingly_ better usability on your phone
 
-### Magic link pasting
+### 🪄 Magic link pasting 🪄
 
 Link pasting feels like magic if you've never used it before. To make a link with link pasting:
 
 1. Copy a URL to your clipboard
 2. Select the text that should be the link
-3. Paste (right-click > Paste or `Ctrl`/`Cmd` + `v`)
+3. Paste (\*right click\* > "Paste" or `CTRL`/`CMD` + `v`)
 4. Result `[{clipboard link}|{selected text}]`
 
 ### Shortcuts
