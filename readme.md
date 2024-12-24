@@ -13,7 +13,7 @@ This script adds a toolbar with the following features:
 - Buttons! Bold, italic, link, planlove brackets, date, horizontal rule, and editor help
     - Buttons work to insert formatting or apply to selected text (especially helpful for links!)
 - [Keyboard shortcuts](#shortcuts) for every button function + `CTRL`/`CMD` + `s` to save your plan
-- 🪄 [Magic link pasting](#magic-link-pasting) 🪄
+- 🪄 [Magic link pasting](#-magic-link-pasting-) 🪄
 - Full screen editor on mobile for _astoundingly_ better usability on your phone
 
 ### 🪄 Magic link pasting 🪄
@@ -45,12 +45,13 @@ The editor feature is installed as a custom UserScript, just like [NewLove](http
 
 ### Step 1: Install a userscript browser add-on
 
-All browsers can use the Tampermonkey browser extension, a cross-browser successor to Greasemonkey. Firefox users can also use [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/).
+All browsers can use the Tampermonkey browser extension, a cross-browser successor to Greasemonkey. Firefox users can also use [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/). Both are available as add-ons for browsers on Android phones as well.
 
 - [Firefox Tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
 - [Chrome Tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 - [Edge Tampermonkey](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
 - [Safari Tampermonkey](https://apps.apple.com/us/app/tampermonkey/id1482490089)
+- [iOS Userscripts app for Safari on iPhone and iPad](https://apps.apple.com/us/app/userscripts/id1463298887)
 
 ### Step 2: Open the userscript file to install it
 
@@ -83,7 +84,7 @@ Tampermonkey is known to stuggle with updates. You can always manually upgrade a
 
 ### v1.6.0 (March 3, 2024)
 
-- [Magic link pasting!](#magic-link-pasting)
+- [Magic link pasting!](#-magic-link-pasting-)
 - [Shortcuts](#shortcuts) for `[date]` and `<hr>`
 - Add new `@match` userscript rule so this works regardless of `www` in URL.
 - Refactor code into more reusable functions and remove some unnecessary checks and `preventDefault()`s. Encapsulate code in function to avoid interferance with other scripts.
