@@ -5,14 +5,15 @@
 // @match		https://grinnellplans.com/*
 // @match		https://www.grinnellplans.com/*
 // @author		[rootwile] aka Mark Root-Wiley
+// @source      https://github.com/mrwweb/plans-editor-toolbar/tree/main/self-love
 // @grant    	none
 // ==/UserScript==
 
 function selfLove() {
     const colorOptions = {
         auto: false,
-        light: 'rgba(255, 255, 255, 0.6)',
-        dark: 'rgba(0, 0, 0, 0.6)',
+        light: 'rgba(255, 255, 255, 0.35)',
+        dark: 'rgba(0, 0, 0, 0.15)',
         tomato: 'rgba(255, 99, 71, 0.4)',
         'peach puff': 'rgba(255, 218, 185, 0.7)',
         'lemon chiffon': 'rgba(255, 250, 205, 0.8)',
@@ -48,12 +49,15 @@ function selfLove() {
     }
 
     function setMarkStyle() {
-        let markOption = localStorage.getItem('selfLoveMarkStyle') ?? 'auto';
+        let markOption = localStorage.getItem('selfLoveMarkStyle');
 
-        if (Object.keys(colorOptions).includes(markOption)) {
+        if (markOption && Object.keys(colorOptions).includes(markOption)) {
             const markColor = colorOptions[markOption];
-            styles = `<style>mark {background: ${markColor} !important; box-shadow: 0 3px 0 1px ${markColor} !important} </style>`;
+            document.getElementById('mark-style')?.remove();
+            styles = `<style id="mark-style">mark {background: ${markColor} !important; box-shadow: 0 3px 0 1px ${markColor} !important} </style>`;
             document.head.insertAdjacentHTML('beforeend', styles);
+        } else {
+            document.getElementById('mark-style')?.remove();
         }
     }
 

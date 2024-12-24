@@ -10,7 +10,7 @@ Self love is self gov. Highlight your planname when it appears on any plan (even
 
 1. Install any userscript browser add-on. [Here is a list.](https://github.com/mrwweb/plans-editor-toolbar?tab=readme-ov-file#step-1-install-a-userscript-browser-add-on)
 2. Make sure you have [NewLove](https://github.com/grinnellplans/Newlove) or [PlansPlus](https://github.com/niqjohnson/PlansPlus) installed.
-3. [Open the Self Love script.](https://github.com/mrwweb/plans-editor-toolbar/raw/main/self-love/self-love.user.js) A box should show up asking you if you want to install the script.
+3. [Open the Self Love script.](https://github.com/mrwweb/plans-editor-toolbar/raw/refs/heads/main/self-love/self-love.user.js) A box should show up asking you if you want to install the script.
 
 ## Configuration
 
