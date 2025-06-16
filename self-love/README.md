@@ -23,6 +23,10 @@ Mark Root-Wiley ([rootwile])
 
 ## Changelog
 
+### v1.1.0 (June 16, 2025)
+
+- Fix compatibility issue with TamperMonkey (DOMContentLoaded event doesn't fire)
+
 ### v1.0.0 (December 23, 2024)
 
 - Initial release

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     	Self Love for Grinnell Plans
 // @description	Highlight all references to your own username. Requires you have QuickLove or PlansPlus already installed
-// @version  	1.0.0
+// @version  	1.1.0
 // @match		https://grinnellplans.com/*
 // @match		https://www.grinnellplans.com/*
 // @author		[rootwile] aka Mark Root-Wiley
@@ -36,7 +36,10 @@ function selfLove() {
                 `(\\[<a href="read\\.php\\?searchname=${username}" class="planlove">${username}<\\/a>\\])`,
                 'gi'
             );
-            markMark = planText.innerHTML.replace(search, '<mark>$1</mark>');
+            let markMark = planText.innerHTML.replace(
+                search,
+                '<mark>$1</mark>'
+            );
             planText.innerHTML = markMark;
         }
     }
@@ -54,7 +57,7 @@ function selfLove() {
         if (markOption && Object.keys(colorOptions).includes(markOption)) {
             const markColor = colorOptions[markOption];
             document.getElementById('mark-style')?.remove();
-            styles = `<style id="mark-style">mark {background: ${markColor} !important; box-shadow: 0 3px 0 1px ${markColor} !important} </style>`;
+            let styles = `<style id="mark-style">mark {background: ${markColor} !important; box-shadow: 0 3px 0 1px ${markColor} !important} </style>`;
             document.head.insertAdjacentHTML('beforeend', styles);
         } else {
             document.getElementById('mark-style')?.remove();
@@ -93,7 +96,7 @@ function selfLove() {
         setMarkStyle();
     }
 
-    document.addEventListener('DOMContentLoaded', init);
+    init();
 }
 
 selfLove();
