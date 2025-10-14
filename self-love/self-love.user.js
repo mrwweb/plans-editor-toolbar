@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name     	Self Love for Grinnell Plans
 // @description	Highlight all references to your own username. Requires you have QuickLove or PlansPlus already installed
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=grinnellplans.com
 // @version  	1.1.0
 // @match		https://grinnellplans.com/*
 // @match		https://www.grinnellplans.com/*
