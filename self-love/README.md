@@ -14,7 +14,7 @@ Self love is self gov. Highlight your planname when it appears on any plan (even
 
 ## Configuration
 
-- By default, the plan love highlight will be your stylesheet's default or the <mark>browser default</mark> (usually yellow) if the stylesheet does not specific a style for the \<mark\> HTML element. {{< /*<!-- markdownlint-disable MD033 -->*/ >}}
+- By default, the plan love highlight will be your stylesheet's default or the <mark>browser default</mark> (usually yellow) if the stylesheet does not specify a style for the \<mark\> HTML element. {{< /*<!-- markdownlint-disable MD033 -->*/ >}}
 - To choose a highlight color go to Preferences and select one of the other color presets. I'm happy to take requests to add colors!
 
 ## Credits
