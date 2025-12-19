@@ -1,6 +1,6 @@
 # Self Love script for GrinnellPlans
 
-v1.0.0
+v1.1.1
 
 Self love is self gov. Highlight your planname when it appears on any plan (even your own!).
 
@@ -22,6 +22,11 @@ Self love is self gov. Highlight your planname when it appears on any plan (even
 Mark Root-Wiley ([rootwile])
 
 ## Changelog
+
+### v1.1.1 (December 19, 2025)
+
+- Make sure this actually works with PlansPlus
+- Fix compatibility with DOMContentLoaded for real?
 
 ### v1.1.0 (June 16, 2025)
 
