@@ -1,16 +1,17 @@
 // ==UserScript==
 // @name     	Self Love for Grinnell Plans
 // @description	Highlight all references to your own username. Requires you have QuickLove or PlansPlus already installed
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=grinnellplans.com
-// @version  	1.1.0
+// @version  	1.1.1
 // @match		https://grinnellplans.com/*
 // @match		https://www.grinnellplans.com/*
 // @author		[rootwile] aka Mark Root-Wiley
 // @source      https://github.com/mrwweb/plans-editor-toolbar/tree/main/self-love
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=grinnellplans.com
 // @grant    	none
 // ==/UserScript==
 
 function selfLove() {
+
     const colorOptions = {
         auto: false,
         light: 'rgba(255, 255, 255, 0.35)',
@@ -23,8 +24,7 @@ function selfLove() {
 
     function getUsername() {
         return (
-            localStorage.getItem('username') ??
-            localStorage.getItem('plansPlusUsername')
+            localStorage.getItem('username') ?? localStorage.getItem('plansPlusUser')
         );
     }
 
@@ -97,7 +97,11 @@ function selfLove() {
         setMarkStyle();
     }
 
-    init();
+    // TamperMonkey doesn't work with DOMContentLoaded, so this tries to fire in two ways
+    document.addEventListener( 'DOMContentLoaded', init );
+    if( document.readyState !== 'loading' ) {
+        init();
+    }
 }
 
 selfLove();
