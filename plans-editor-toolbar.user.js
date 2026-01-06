@@ -107,8 +107,8 @@ dialog {
             width: 100%;
             height: 100%;
             inset: 0;
-            padding: 1em;
-            padding-inline-start: calc(var(--toolbar-height) + 1em);
+            padding: 1.5em !important;
+            padding-block-start: calc(var(--toolbar-height) + 1.5em) !important;
             z-index: 999999;
         }
         .plans-editor-toolbar {
