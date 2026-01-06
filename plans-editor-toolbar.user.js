@@ -415,7 +415,7 @@ dialog {
      */
     function closeEditor() {
         document.body.classList.remove('plans-editor-focused');
-        submitButton.focus();
+        textArea.focus();
     }
 
     /**
