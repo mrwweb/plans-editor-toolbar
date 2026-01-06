@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     	PlansEditorToolbar
 // @description	Bold, italic, date, hr, planlove, and link buttons and shortcuts for the Plans editor. Full-screen mode on mobile.
-// @version  	1.7.2
+// @version  	1.7.2.1
 // @match		https://grinnellplans.com/edit.php
 // @match		https://www.grinnellplans.com/edit.php
 // @supportURL	https://github.com/mrwweb/plans-editor-toolbar/issues/
@@ -102,6 +102,8 @@ dialog {
 
 @media( max-width: 40em ) {
     .plans-editor-focused {
+        height: 100% !important;
+
         textarea {
             position: fixed;
             width: 100%;
