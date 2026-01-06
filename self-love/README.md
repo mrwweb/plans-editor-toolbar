@@ -1,6 +1,6 @@
 # Self Love script for GrinnellPlans
 
-v1.0.0
+v1.1.1
 
 Self love is self gov. Highlight your planname when it appears on any plan (even your own!).
 
@@ -14,7 +14,7 @@ Self love is self gov. Highlight your planname when it appears on any plan (even
 
 ## Configuration
 
-- By default, the plan love highlight will be your stylesheet's default or the <mark>browser default</mark> (usually yellow) if the stylesheet does not specific a style for the \<mark\> HTML element. {{< /*<!-- markdownlint-disable MD033 -->*/ >}}
+- By default, the plan love highlight will be your stylesheet's default or the <mark>browser default</mark> (usually yellow) if the stylesheet does not specify a style for the \<mark\> HTML element. {{< /*<!-- markdownlint-disable MD033 -->*/ >}}
 - To choose a highlight color go to Preferences and select one of the other color presets. I'm happy to take requests to add colors!
 
 ## Credits
@@ -22,6 +22,11 @@ Self love is self gov. Highlight your planname when it appears on any plan (even
 Mark Root-Wiley ([rootwile])
 
 ## Changelog
+
+### v1.1.1 (December 19, 2025)
+
+- Make sure this actually works with PlansPlus
+- Fix compatibility with DOMContentLoaded for real?
 
 ### v1.1.0 (June 16, 2025)
 
