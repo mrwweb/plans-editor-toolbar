@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     	PlansEditorToolbar
 // @description	Bold, italic, date, hr, planlove, and link buttons and shortcuts for the Plans editor. Full-screen mode on mobile.
-// @version  	1.7.2.4
+// @version  	1.7.2.5
 // @match		https://grinnellplans.com/edit.php
 // @match		https://www.grinnellplans.com/edit.php
 // @supportURL	https://github.com/mrwweb/plans-editor-toolbar/issues/
@@ -416,7 +416,7 @@ dialog {
      */
     function closeEditor() {
         document.body.classList.remove('plans-editor-focused');
-        textarea.focus();
+        toolbar.focus();
     }
 
     /**
