@@ -1,6 +1,6 @@
 # Plans Editor Toolbar
 
-v1.7.1 ([Changelog](#changelog))
+v1.7.2 ([Changelog](#changelog))
 
 Make [GrinnellPlans](https://grinnellplans.com) a little easier to use with a simple toolbar for formatting text, especially on phones or if you don't like HTML.
 
@@ -12,8 +12,8 @@ This script adds a toolbar with the following features:
 
 - Buttons! Bold, italic, link, planlove brackets, date, horizontal rule, and editor help
     - Buttons work to insert formatting or apply to selected text (especially helpful for links!)
-- [Keyboard shortcuts](#shortcuts) for every button function + `CTRL`/`CMD` + `s` to save your plan
 - 🪄 [Magic link pasting](#-magic-link-pasting-) 🪄
+- [Keyboard shortcuts](#shortcuts) for every button function + `CTRL`/`CMD` + `s` to save your plan
 - Full screen editor on mobile for _astoundingly_ better usability on your phone
 
 ### 🪄 Magic link pasting 🪄
@@ -67,6 +67,10 @@ Tampermonkey is known to stuggle with updates. You can always manually upgrade a
 - Undo / Redo doesn't work for toolbar actions. It could be added if enough people run into problems. See: #4
 
 ## Changelog
+
+### v1.7.2 (January 6, 2026)
+
+- Fix: Toolbar stays in view after clicking a button on mobile
 
 ### v1.7.1 (March 21, 2024)
 
